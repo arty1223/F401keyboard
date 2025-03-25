@@ -1,4 +1,4 @@
-# Install script for directory: D:/Documents/STM32/F401_USB/cmake/stm32cubemx
+# Install script for directory: C:/Users/art23/Documents/Code/STM32/F401_USB/cmake/stm32cubemx
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
