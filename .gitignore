@@ -6,7 +6,6 @@ CMakeCache.txt
 cmake_install.cmake
 compile_commands.json
 CMakeFiles/
-cmake/
 build/
 Core/Src/Backup/
 Core/Inc/Backup/
