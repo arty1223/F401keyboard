@@ -2,30 +2,20 @@
 #include "main.h"
 #include "usbd_hid.h"
 
-#define KEY_MEDIA_PLAYPAUSE 0xe8
-#define KEY_MEDIA_STOPCD 0xe9
-#define KEY_MEDIA_PREVIOUSSONG 0xea
-#define KEY_MEDIA_NEXTSONG 0xeb
-#define KEY_MEDIA_EJECTCD 0xec
-#define KEY_MEDIA_VOLUMEUP 0xed
-#define KEY_MEDIA_VOLUMEDOWN 0xee
-#define KEY_MEDIA_MUTE 0xef
-#define KEY_MEDIA_WWW 0xf0
-#define KEY_MEDIA_BACK 0xf1
-#define KEY_MEDIA_FORWARD 0xf2
-#define KEY_MEDIA_STOP 0xf3
-#define KEY_MEDIA_FIND 0xf4
-#define KEY_MEDIA_SCROLLUP 0xf5
-#define KEY_MEDIA_SCROLLDOWN 0xf6
-#define KEY_MEDIA_EDIT 0xf7
-#define KEY_MEDIA_SLEEP 0xf8
-#define KEY_MEDIA_COFFEE 0xf9
-#define KEY_MEDIA_REFRESH 0xfa
-#define KEY_MEDIA_CALC 0xfb
+#define USB_HID_SCAN_NEXT 0x01
+#define USB_HID_SCAN_PREV 0x02
+#define USB_HID_STOP 0x04
+#define USB_HID_EJECT 0x08
+#define USB_HID_PAUSE 0x10
+#define USB_HID_MUTE 0x20
+#define USB_HID_VOL_UP 0x40
+#define USB_HID_VOL_DEC 0x80
+
 extern USBD_HandleTypeDef hUsbDeviceFS;
 
 typedef struct
 {
+  uint8_t id;
   uint8_t MODIFIER;
   uint8_t RESERVED;
   uint8_t KEYCODE1;
@@ -36,6 +26,12 @@ typedef struct
   uint8_t KEYCODE6;
 } subKeyBoard;
 
+typedef struct
+{
+  uint8_t id;  // Report ID
+  uint8_t key; // Key
+} mediaHID_t;
 
 void typeOnKeyboard(char cmd[]);
 void keyPressRelease(uint8_t MODIFIER, uint8_t KEYCODE);
+void pressMediaKey(uint8_t key);
