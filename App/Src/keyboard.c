@@ -2,12 +2,14 @@
 
 void typeOnKeyboard(char cmd[])
 {
-  subKeyBoard keyBoardHIDsub = {0,};
-  keyBoardHIDsub.id = 1;
+  subKeyBoard keyBoardHIDsub = {
+      0,
+  };
+  keyBoardHIDsub.ID = 1;
 
   for (int i = 0; i < (int)strlen(cmd); i++)
   {
-    char charToType = cmd[i];    
+    char charToType = cmd[i];
     uint8_t KEYCODE = 0x00;
     uint8_t MODIFIER = 0x00;
 
@@ -276,9 +278,11 @@ void typeOnKeyboard(char cmd[])
 
 void keyPressRelease(uint8_t MODIFIER, uint8_t KEYCODE)
 {
-  subKeyBoard keyBoardHIDsub = {0,};
+  subKeyBoard keyBoardHIDsub = {
+      0,
+  };
 
-  keyBoardHIDsub.id = 1;
+  keyBoardHIDsub.ID = 1;
   keyBoardHIDsub.MODIFIER = MODIFIER; // To press shift key
   keyBoardHIDsub.KEYCODE1 = KEYCODE;
 
@@ -289,16 +293,17 @@ void keyPressRelease(uint8_t MODIFIER, uint8_t KEYCODE)
   keyBoardHIDsub.KEYCODE1 = 0x00;
 
   USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t *)&keyBoardHIDsub, (uint16_t)sizeof(keyBoardHIDsub));
-  HAL_Delay(20);  
+  HAL_Delay(20);
 }
 
-void pressMediaKey(uint8_t key){
-    mediaHID_t mediaHID;
-    mediaHID.id = 2;
-    mediaHID.key = key;
-    USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t *)&mediaHID, sizeof(mediaHID_t));
-    HAL_Delay(20);
-    mediaHID.key = 0;
-    USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t *)&mediaHID, sizeof(mediaHID_t));
-    HAL_Delay(20);
+void pressMediaKey(uint8_t key)
+{
+  mediaHID_t mediaHID;
+  mediaHID.ID = 2;
+  mediaHID.KEYCODE = key;
+  USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t *)&mediaHID, sizeof(mediaHID_t));
+  HAL_Delay(20);
+  mediaHID.KEYCODE = 0;
+  USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t *)&mediaHID, sizeof(mediaHID_t));
+  HAL_Delay(20);
 }

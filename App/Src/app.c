@@ -13,7 +13,9 @@ void app_init(void)
 
 void app_tick(void)
 {
-    pressMediaKey(USB_HID_PAUSE);
-    typeOnKeyboard("test");
-    HAL_Delay(1500);
+    // pressMediaKey(USB_HID_VOL_UP);    
+    // keyPressRelease(USB_HID_MODIFIER_LEFT_GUI, 0x19); // ctrl+v
+    // HAL_Delay(20);
+    // keyPressRelease(0x00, KEY_ENTER);
+    HAL_Delay(1000);
 }
